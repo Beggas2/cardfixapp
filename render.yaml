@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: cardfix-backend
+    env: node
+    plan: starter
+    buildCommand: npm install -g @encore/cli && encore build
+    startCommand: encore run --listen=0.0.0.0:$PORT
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: GeminiAPIKey
+        sync: false
+      - key: JWTSecret
+        sync: false
+      - key: StripeSecretKey
+        sync: false
+      - key: EmailAPIKey
+        sync: false
+
+databases:
+  - name: cardfix-db
+    databaseName: cardfix_db_pnuf
+    user: cardfix_user
+    plan: starter
